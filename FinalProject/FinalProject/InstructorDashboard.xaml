@@ -1,0 +1,305 @@
+﻿<Window x:Class="FinalProject.InstructorDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalProject"
+        mc:Ignorable="d"
+        Title="InstructorDashboard" Height="800" Width="1000">
+    <Grid Background="#a6d9ef" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <Border  HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Margin="25,24,26.6,28.4" BorderBrush="Red" Background="White" Width="962" Height="714">
+            <StackPanel Orientation="Vertical" Margin="40">
+                <WrapPanel  HorizontalAlignment="Center" Margin="50,5">
+                    <Image Source="ITI_logo.png" Width="20" Margin="5,0,0,0"/>
+                    <Label Content="Dashboard" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,5,2,0" VerticalContentAlignment="Bottom"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10,5,27,5">
+                        <Border x:Name="BorderBackbtn" Width="80" Height="35" BorderThickness="1" BorderBrush="white" Background="#FF36BFF1" CornerRadius="10">
+                            <Button  Foreground="black" FontWeight="Bold" Content="Back" Margin="0" Width="{Binding BorderBackbtn.Width}" Height="{Binding BorderBackbtn.Height}" Background="#00DDDDDD" BorderBrush="White"/>
+                        </Border>
+                    </StackPanel>
+                    <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                        <Button Content="Add Question" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="add_question"/>
+                        <Button Content="Add Exam" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="add_exam"/>
+                        <Button Content="Assign Students to Exam" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="assign_student_to_Exam"/>
+                        <Button Content="Put Degrees" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="Button_Click_2" />
+                    </WrapPanel>
+                </WrapPanel>
+                <Canvas>
+                    <!-- add new question page-->
+                    <StackPanel Canvas.ZIndex="1" x:Name="allquestions" Orientation="Vertical" Height="555" Width="865" Background="White">
+                        <ComboBox x:Name="questionCourse" Width="200" HorizontalAlignment="Center" SelectionChanged="questionCourse_SelectionChanged_1" />
+                        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="8,8,7.8,8" x:Name="questionss" Height="150" SelectionChanged="questionss_SelectionChanged" >
+                            <ListView.View>
+                                <GridView >
+                                    <GridViewColumn  Header="ID"  DisplayMemberBinding="{Binding IDeas}" Width="80" />
+                                    <GridViewColumn  Header="Text"  DisplayMemberBinding="{Binding TextQuesition}" Width="524" />
+                                    <GridViewColumn  Header="Type"  DisplayMemberBinding="{Binding Type}" Width="80" />
+                                    <GridViewColumn  Header="Degree"  DisplayMemberBinding="{Binding Degree}" Width="80" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                            <Button Content="Add New" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="add_new_question"/>
+                            <Button x:Name="remove_btn" Content="Remove" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="remove_Click_4"/>
+                        </WrapPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="0" x:Name="textquestionpanel" HorizontalAlignment="Left" Height="555" VerticalAlignment="Top" Width="888" Background="White" Margin="0" >
+                        <StackPanel Margin="40">
+                            <Label Content="Question :" />
+                            <TextBox x:Name="qText" Height="38.5" TextWrapping="Wrap"/>
+                            <Label Content="Model Answer :" />
+                            <TextBox x:Name="qAnswer" Height="90" TextWrapping="Wrap" Text=""/>
+                            <Label Content="Degree :" />
+                            <TextBox x:Name="qDegree" Height="23" TextWrapping="Wrap"/>
+                            <Label Content="Course :" />
+                            <ComboBox x:Name="InstuctorCourse" Width="80" Margin="0,0,732,0" />
+                        </StackPanel>
+                        <Button Content="save question" Margin="50" Height="30" Width="142"  x:Name="save" Click="txt_save_Click" />
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="0" x:Name="questionType" HorizontalAlignment="Center" Height="555" Margin="0" VerticalAlignment="Center" Width="888" Background="White">
+                        <WrapPanel Margin="0,120,-0.4,0" HorizontalAlignment="Center">
+                            <Button x:Name="mcq" Content="MCQ Question" Margin="0,0,100,0" Background="#FFC3E0FF" FontSize="20" Click="mcq_question"/>
+                            <Button x:Name="text" Content="Text Question" Margin="0,0,100,0" Background="#FFC3E0FF" FontSize="20" Click="text_Click"/>
+                            <Button x:Name="tf" Content="T/F Question" Margin="0,0,-0.4,0" Background="#FFC3E0FF" FontSize="20" Click="tf_Click"/>
+                        </WrapPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="0" x:Name="mcqquestionpanel" HorizontalAlignment="Left" Height="555" VerticalAlignment="Top" Width="888" Background="White" Margin="0" >
+                        <StackPanel Margin="40">
+                            <Label Content="Question :" />
+                            <TextBox x:Name="qText1" Height="38.5" TextWrapping="Wrap"/>
+                            <Label Content="Model Answer :" />
+                            <StackPanel>
+                                <WrapPanel Margin="0,0,-0.2,0">
+                                    <StackPanel>
+                                        <Label Content="A)" />
+                                        <TextBox x:Name="textA" Width="138" Height="40" TextChanged="TextBox_TextChanged" />
+                                    </StackPanel>
+                                    <CheckBox x:Name="checkboxA" Margin="0,25,0,0" />
+                                    <StackPanel Margin="300,0,0,0">
+                                        <Label Content="B)" />
+                                        <TextBox x:Name="textB"  Width="138" Height="40" />
+                                    </StackPanel>
+                                    <CheckBox x:Name="checkboxB" Margin="0,25,0,0"/>
+                                </WrapPanel>
+                                <WrapPanel>
+                                    <StackPanel>
+                                        <Label Content="C)" />
+                                        <TextBox x:Name="textC"  Width="138" Height="40" />
+                                    </StackPanel>
+                                    <CheckBox x:Name="checkboxC" Margin="0,25,0,0"/>
+                                    <StackPanel Margin="300,0,0,0">
+                                        <Label Content="D)" />
+                                        <TextBox x:Name="textD"  Width="138" Height="40" />
+                                    </StackPanel>
+                                    <CheckBox x:Name="checkboxD" Margin="0,25,0,0"/>
+                                </WrapPanel>
+                            </StackPanel>
+                            <Label Content="Degree :" />
+                            <TextBox x:Name="qDegree1" Height="23" TextWrapping="Wrap"/>
+                            <Label Content="Course :" />
+                            <ComboBox x:Name="InstuctorCourse1" Width="80" Margin="0,0,732,0" SelectionChanged="InstuctorCourse1_SelectionChanged" />
+                        </StackPanel>
+                        <Button Content="save question" Margin="50" Height="30" Width="142"  x:Name="btn_msq" Click="msq_save_Click" />
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="0" x:Name="tfquestionpanel" HorizontalAlignment="Left" Height="555" VerticalAlignment="Top" Width="888" Background="White" Margin="0">
+                        <StackPanel Margin="40">
+                            <Label Content="Question :" />
+                            <TextBox x:Name="qText2" Height="38.5" TextWrapping="Wrap"/>
+                            <Label Content="Model Answer :" />
+                            <StackPanel>
+                                <WrapPanel Margin="0,0,0,0">
+                                    <Label Content="T" />
+                                    <RadioButton x:Name="radioA" Margin="0,6,0,0" />
+                                    <Label Content="F" Margin="29,0,0,0" />
+                                    <RadioButton Margin="0,6,0,0" />
+                                </WrapPanel>
+                            </StackPanel>
+                            <Label Content="Degree :"/>
+                            <TextBox x:Name="qDegree2" Height="23" TextWrapping="Wrap"/>
+                            <Label Content="Course :" />
+                            <ComboBox x:Name="InstuctorCourse2" Width="80" Margin="0,0,732,0" />
+                        </StackPanel>
+                        <Button Content="save question" Margin="50" Height="30" Width="142"  x:Name="btn_save" Click="truefalse_save"/>
+                    </StackPanel>
+                    <!-- add new exam page-->
+                    <StackPanel Canvas.ZIndex="0" x:Name="allexams" Orientation="Vertical" Height="555" Width="865" Background="White" Margin="0">
+                        <ComboBox x:Name="examCoure" Width="200" SelectionChanged="examsincourse" />
+                        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="8,8,7.8,8" x:Name="exams" Height="150" >
+                            <ListView.View>
+                                <GridView >
+                                    <GridViewColumn  Header="Exam Code"  DisplayMemberBinding="{Binding ExamCode}" Width="0" />
+                                    <GridViewColumn  Header="Exam Name"  DisplayMemberBinding="{Binding Name}" Width="80" />
+                                    <GridViewColumn  Header="Type"  DisplayMemberBinding="{Binding Type}" Width="80" />
+                                    <GridViewColumn  Header="Course"  DisplayMemberBinding="{Binding Course}" Width="0" />
+                                    <GridViewColumn  Header="Branch"  DisplayMemberBinding="{Binding Branch}" Width="0" />
+                                    <GridViewColumn  Header="Intake"  DisplayMemberBinding="{Binding Intake}" Width="0" />
+                                    <GridViewColumn  Header="Maximum Grade"  DisplayMemberBinding="{Binding MaxDegree}" Width="145" />
+                                    <GridViewColumn  Header="Minimum Grade"  DisplayMemberBinding="{Binding MinDegree}" Width="145" />
+                                    <GridViewColumn  Header="Date"  DisplayMemberBinding="{Binding Date}" Width="80" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                            <Button Content="Add New" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="newExam"/>
+                            <Button Content="Remove Exam" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="Button_Click_5"/>
+                        </WrapPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="10" x:Name="exampanel" HorizontalAlignment="Left" Height="555" VerticalAlignment="Top" Width="865" Background="White" Margin="0" >
+                        <StackPanel Margin="40,0,0,0">
+                            <Label Content="Exam Degree :"/>
+                            <WrapPanel>
+                                <TextBox x:Name="eDegree" Height="23" TextWrapping="Wrap" Width="50" Margin="10,0,0,0" LostFocus="eDegree_LostFocus"/>
+                                <TextBlock Text="/100" Width="48" HorizontalAlignment="Left" Margin="7,0,0,0" OpacityMask="Black" />
+                            </WrapPanel>
+                            <Label Content="Course :"></Label>
+                            <ComboBox x:Name="IstuctorCourse" Width="80" Margin="0,0,732,0" SelectionChanged="IstuctorCourse_SelectionChanged_1" />
+                            <Label Content="Type :"></Label>
+                            <Label>
+                                <ComboBox x:Name="comboBoxofexamType" Width="120" Margin="5,0,0,0">
+
+                                </ComboBox>
+                            </Label>
+                            <Label Content="Choose Questions" />
+                            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="8,8,7.8,8" x:Name="coursequestions" Height="150" IsEnabled="False">
+                                <ListView.View>
+                                    <GridView >
+                                        <GridViewColumn x:Name="questionAllowed" Header="ID" Width="80" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox Content="{Binding IDeas}" Checked="CheckBox_Checked_1" IsEnabled="{Binding CheckableAllowed}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Header="Text"  DisplayMemberBinding="{Binding TextQuesition}" Width="500" />
+                                        <GridViewColumn  Header="Type"  DisplayMemberBinding="{Binding Type}" Width="80" />
+                                        <GridViewColumn  Header="Grade" Width="80" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox x:Name="questionGrade" Width="70" LostFocus="questionGrade_LostFocus" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <Label Content="Total Degree" />
+                            <WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,121,0">
+                                    <TextBlock x:Name="sumOfQuestionGrades" Width="20" HorizontalAlignment="Left" Margin="7,0,0,0" OpacityMask="Black" />
+                                    <TextBlock Text="/" OpacityMask="Black"  />
+                                    <TextBlock x:Name="BindedExamGrade" Width="48" HorizontalAlignment="Left" Margin="7,0,0,0" OpacityMask="Black"  />
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Left">
+                                    <Label x:Name="totalQgrade" Content="Exam grade must be covered by all questions" Foreground="Red" Visibility="Hidden"/>
+                                </WrapPanel>
+                            </WrapPanel>
+                            <Label Content="Exam Begin Date" />
+                            <DatePicker x:Name="ExamDate" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                            <WrapPanel HorizontalAlignment="Left">
+                                <Label Content="Exam Begin Time" />
+                                <TextBox x:Name="ExamTime" Text="" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                                <ComboBox SelectedIndex="0">
+                                    <ComboBoxItem>AM</ComboBoxItem>
+                                    <ComboBoxItem>PM</ComboBoxItem>
+                                </ComboBox>
+                                <Label Content="Duration :" Margin="30,0,0,0"/>
+                                <TextBox x:Name="duration" Width="100" />
+                            </WrapPanel>
+                        </StackPanel>
+                        <Label x:Name="generalWarining" Content="Please Enter A valid Data" HorizontalAlignment="Center" Background="White" Foreground="Red" Visibility="Hidden"/>
+                        <Button x:Name="button" Content="Submit Exam" HorizontalAlignment="Center" Click="submit_exam"/>
+                    </StackPanel>
+                    <!--Assign an exam to a student/s-->
+                    <StackPanel Canvas.ZIndex="0" x:Name="examsonsystem" Orientation="Vertical" Height="555" Width="865" Background="White" Margin="0" HorizontalAlignment="Center">
+                        <ComboBox x:Name="Coure" Width="200" Margin="0,30,0,0" SelectionChanged="Coure_SelectionChanged" />
+                        <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="8,8,7.8,8" x:Name="AvaialableStudents" Height="150" >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn x:Name="students" Header="ID" Width="80" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox x:Name="chekeeee" Content="{Binding ID}" Checked="choose_Students" IsEnabled="{Binding Path=checkedd}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Header="Name"  DisplayMemberBinding="{Binding Name}" Width="80" />
+                                        <GridViewColumn  Header="Track"  DisplayMemberBinding="{Binding Track}" Width="80" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="8,8,7.8,8" x:Name="avaialableExams" Height="150" SelectionChanged="avaialableExams_SelectionChanged" >
+                                <ListView.View>
+                                    <GridView >
+                                        <GridViewColumn  Header="Exam Code"  DisplayMemberBinding="{Binding ExamCode}" Width="0" />
+                                        <GridViewColumn  Header="Exam Name"  DisplayMemberBinding="{Binding ExamName}" Width="80" />
+                                        <GridViewColumn  Header="Type"  DisplayMemberBinding="{Binding Type}" Width="80" />
+                                        <GridViewColumn  Header="Date"  DisplayMemberBinding="{Binding Date}" Width="80" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                        </WrapPanel>
+                        <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                            <Button Content="Assign Studets" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="Button_Click"/>
+                            <Button Content="Remove All Students" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black"/>
+                        </WrapPanel>
+                    </StackPanel>
+                    <!--PUT degrees to students-->
+                    <StackPanel Canvas.ZIndex="3" x:Name="StudentsSubmitedExam" Orientation="Vertical" Height="555" Width="865" Background="White" Margin="0" HorizontalAlignment="Center">
+                        <ComboBox x:Name="Course" Width="200" Margin="0,30,0,0" SelectionChanged="Course_SelectionChanged" />
+                        <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                            <ListView Margin="8,8,7.8,8" x:Name="Studentsexams" Height="250" SelectionChanged="exams_SelectionChanged" >
+                                <ListView.View>
+                                    <GridView >
+                                        <GridViewColumn Header="ExamCode"  DisplayMemberBinding="{Binding ExamCode}" Width="0" />
+                                        <GridViewColumn  Header="Name"  DisplayMemberBinding="{Binding Name}" Width="100" />
+                                        <GridViewColumn  Header="Type"  DisplayMemberBinding="{Binding Type}" Width="80" />
+                                        <GridViewColumn  Header="Branch" DisplayMemberBinding="{Binding Branch}" Width="0" />
+                                        <GridViewColumn  Header="Intake" DisplayMemberBinding="{Binding Intake}" Width="00" />
+                                        <GridViewColumn  Header="Grade" DisplayMemberBinding="{Binding Grade}" Width="0" />
+                                        <GridViewColumn  Header="Minmum Degree" DisplayMemberBinding="{Binding MinDegree}" Width="145" />
+                                        <GridViewColumn  Header="Maximum Degree" DisplayMemberBinding="{Binding MaxDegree}" Width="145" />
+                                        <GridViewColumn  Header="Date" DisplayMemberBinding="{Binding Date}" Width="80" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                        </WrapPanel>
+                        <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                            <Button Content="Put Grades" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="Button_Click_1"/>
+                        </WrapPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="0" x:Name="AnsweredQuestions" Orientation="Vertical" Height="555" Width="865" Background="White" Margin="0" HorizontalAlignment="Center">
+                        <ListView Margin="8,8,7.8,8" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="submitedQuestions" Height="150" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn  Header="StudentId"  DisplayMemberBinding="{Binding StudentId}" Width="0" />
+                                    <GridViewColumn  Header="QustCode"  DisplayMemberBinding="{Binding QustCode}" Width="00" />
+                                    <GridViewColumn  Header="ExamCode"  DisplayMemberBinding="{Binding ExamCode}" Width="00" />
+                                    <GridViewColumn  Header="Question"  DisplayMemberBinding="{Binding Question}" Width="200" />
+                                    <GridViewColumn  Header="Type" DisplayMemberBinding="{Binding Type}" Width="50" />
+                                    <GridViewColumn  Header="Answer"  DisplayMemberBinding="{Binding Answer}" Width="200" />
+                                    <GridViewColumn  Header="Model Answer"  DisplayMemberBinding="{Binding ModelAnswer}" Width="200" />
+                                    <GridViewColumn  Header="Grade" Width="200" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBox x:Name="QuestGrade" Text="{Binding DegreeMark}" Width="70" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                            <Button Content="Submit" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="Button_Click_3"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Canvas>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Window>

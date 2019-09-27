@@ -1,0 +1,349 @@
+﻿<Window x:Class="FinalProject.ManagerDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalProject"
+        mc:Ignorable="d"
+        Title="ManagerDashboard" Height="800" Width="1000">
+    <Grid Background="#a6d9ef" Margin="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <Border  HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Margin="25,24,26.6,28.4" BorderBrush="Red" Background="White" Width="962" Height="814">
+            <StackPanel Orientation="Vertical" Margin="40">
+                <WrapPanel  HorizontalAlignment="Center" Margin="50,5">
+                    <Image Source="ITI_logo.png" Width="20" Margin="5,0,0,0"/>
+                    <Label Content="Dashboard" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,5,2,0" VerticalContentAlignment="Bottom"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="10,5,27,5">
+                        <Border x:Name="BorderBackbtn" Width="80" Height="35" BorderThickness="1" BorderBrush="white" Background="#FF36BFF1" CornerRadius="10">
+                            <Button  Foreground="black" FontWeight="Bold" Content="Back" Margin="0" Width="{Binding BorderBackbtn.Width}" Height="{Binding BorderBackbtn.Height}" Background="#00DDDDDD" BorderBrush="White"/>
+                        </Border>
+                    </StackPanel>
+
+                    <WrapPanel  HorizontalAlignment="Center" Margin="10,5">
+                        <Button Content="Instructors" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="all_instructors"  />
+                        <Button Content="Courses" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="all_courses"/>
+                        <Button Content="Students" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="all_students"/>
+                        <Button Content="Departments" Margin="0" Width="142" Height="39" Background="#a6d9ef" Foreground="Black" BorderThickness="1" BorderBrush="Black" Click="department"/>
+                    </WrapPanel>
+                </WrapPanel>
+                <Canvas>
+                    <!-- add new question page-->
+                    <StackPanel Canvas.ZIndex="2" x:Name="instructors" Orientation="Vertical" Height="600" Width="865" Background="White" Margin="0">
+                        <StackPanel Orientation="Vertical"  Margin="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                            <StackPanel>
+                                <WrapPanel Margin="0,15,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Name" HorizontalAlignment="Center" Margin="0,10,0,0"></Label>
+                                    <TextBox x:Name="instructorname" Width="110" Height="25" Margin="35,10,10,20"/>
+                                </WrapPanel>
+                                <WrapPanel Margin="0,15,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Branch" HorizontalAlignment="Center" Margin="0,10,0,0"></Label>
+                                    <ComboBox x:Name="branchName" Width="110" Height="25" Margin="35,10,10,20" Loaded="branchName_Loaded"/>
+
+                                </WrapPanel>
+                                <WrapPanel Margin="0,15,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Salary" HorizontalAlignment="Center" Margin="0,10,0,0"></Label>
+                                    <TextBox x:Name="salaryName" Width="110" Height="25" Margin="35,10,10,20"/>
+                                </WrapPanel>
+
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <Button x:Name="addinstructor" Background="#a6d9ef" FontWeight="Bold" Width="80" Height="25" Content="Add" Click="addinstructor_Click" />
+
+                                    <Button x:Name="removeinstructor" Background="#a6d9ef" FontWeight="Bold" Width="80" Height="25" Click="removeinstructor_Click">Remove</Button>
+
+                                    <Button x:Name="updateinstructor" Background="#a6d9ef" FontWeight="Bold" Width="80" Height="25" Click="updateinstructor_Click">Update</Button>
+
+                                </WrapPanel>
+
+                                <WrapPanel HorizontalAlignment="Center" Margin="20,10">
+                                    <ListView Margin="8,8,7.8,8" x:Name="instructorss" Height="150" Loaded="instructorss_Loaded" SelectionChanged="instructorss_SelectionChanged" >
+                                        <ListView.View>
+                                            <GridView >
+                                                <GridViewColumn  Header="Name"  DisplayMemberBinding="{Binding FirstName}" Width="482" />
+                                                <GridViewColumn  Header="Salary"  DisplayMemberBinding="{Binding Salary}" Width="80" />
+                                                <GridViewColumn  Header="Branch"  DisplayMemberBinding="{Binding Branchname}" Width="80" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </WrapPanel>
+
+                            </StackPanel>
+
+
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="1" x:Name="courses" HorizontalAlignment="Left" Height="555" VerticalAlignment="Top" Width="888" Background="White" Margin="0" Loaded="courses_Loaded">
+                        <StackPanel Margin="40">
+                            <StackPanel>
+                                <WrapPanel Margin="0,15,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Name" HorizontalAlignment="Center" Margin="0,10,0,0"></Label>
+                                    <TextBox x:Name="coursename" Width="110" Height="25" Margin="35,10,10,20"/>
+                                </WrapPanel>
+                                <WrapPanel Margin="0,15,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Degree" HorizontalAlignment="Center" Margin="0,10,0,0"></Label>
+                                    <TextBox x:Name="degreee" Width="110" Height="25" Margin="35,10,10,20"/>
+                                </WrapPanel>
+                                <WrapPanel Margin="0,15,0,0" HorizontalAlignment="Center">
+                                    <Label Content="Instructor" HorizontalAlignment="Center" Margin="0,10,0,0"></Label>
+                                    <ComboBox x:Name="instructorcourse" Width="110" Height="25" Margin="35,10,10,20" Loaded="instructorcourse_Loaded"/>
+                                </WrapPanel>
+
+                                <WrapPanel HorizontalAlignment="Center" Margin="20,10">
+                                    <Button x:Name="addcourse" FontWeight="Bold" Width="80" Margin="10,0,0,0" Click="addcourse_Click">Add</Button>
+                                    <Button x:Name="editcourse" Margin="0,0,5,0" Width="70" Height="20" Click="editcourse_Click" >Edit</Button>
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="8,8,7.8,8" x:Name="coursess" Height="150" HorizontalAlignment="Center" SelectionChanged="coursess_SelectionChanged" Loaded="coursess_Loaded_1" >
+                                        <ListView.View>
+                                            <GridView >
+                                                <GridViewColumn  Header="Name"  DisplayMemberBinding="{Binding Name}" Width="482" />
+                                                <GridViewColumn  Header="instructor"  DisplayMemberBinding="{Binding instructorName}" Width="80" />
+                                                <GridViewColumn  Header="Degree"  DisplayMemberBinding="{Binding MaxDegree}" Width="80" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+
+                                </WrapPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="11" x:Name="students" HorizontalAlignment="Center" Height="555" Margin="0" VerticalAlignment="Center" Width="888" Background="White">
+                        <StackPanel Orientation="Vertical" Margin="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+                            <Grid ShowGridLines="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+
+                                <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">ID</Label>
+                                <TextBox x:Name="idstudent"  HorizontalAlignment="Center" Width="110" Padding="0"   Height="20" Grid.Row="0" Grid.Column="1"></TextBox>
+                                <Label  HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">Password</Label>
+                                <TextBox x:Name="passswordstudent" HorizontalAlignment="Left" Width="110" Padding="0"   Height="20" Grid.Row="0" Grid.Column="4"></TextBox>
+
+                                <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">First Name</Label>
+                                <TextBox x:Name="studentFirstName" HorizontalAlignment="Center" Padding="0" Width="110"  Height="20" Grid.Row="1" Grid.Column="1"></TextBox>
+                                <Label  HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2">Last Name</Label>
+                                <TextBox x:Name="lastnamestudent" HorizontalAlignment="Left" Width="110" Padding="0"   Height="20" Grid.Row="1" Grid.Column="4"></TextBox>
+                                <Label  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="2" Grid.Column="0">Birth Date</Label>
+
+                                <DatePicker x:Name="datestudent" VerticalAlignment="Center" Width="110" Grid.Row="2" Grid.Column="1"></DatePicker>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold" Grid.Column="0">Email</Label>
+                                <TextBox x:Name="emailstudent" HorizontalAlignment="Center" Padding="0" Width="110"  Height="20" Grid.Row="3" Grid.Column="1"></TextBox>
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="4" Grid.Column="0">Intake</Label>
+                                <ComboBox x:Name="intakestudent" HorizontalAlignment="Center" Padding="0" Width="70" Height="20" Grid.Row="4" Grid.Column="1" Loaded="intakestudent_Loaded" ></ComboBox>
+                                <Label VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center">Branch</Label>
+                                <ComboBox Width="70" Height="20" x:Name="branchstudent" Grid.Row="5" Grid.Column="1" Loaded="branchstudent_Loaded">
+                                    <!--<ComboBoxItem Content="Smart Village"/>
+                                    <ComboBoxItem Content="Ismailia"/>
+                                    <ComboBoxItem Content="Alexandria"/>
+                                    <ComboBoxItem Content="Mansoura"/>
+                                    <ComboBoxItem Content="Assiut"/>
+                                    <ComboBoxItem Content="Nasr City"/>-->
+                                </ComboBox>
+                                <Label VerticalAlignment="Center" Grid.Row="6" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center">Track</Label>
+                                <ComboBox x:Name="tracksstudent" Width="70" Height="20" Grid.Row="6" Grid.Column="1" Loaded="tracksstudent_Loaded">
+                                    <!--<ComboBoxItem Content="3D Art"/>
+                                    <ComboBoxItem Content="Civil Engineering Information"/>
+                                    <ComboBoxItem Content="Cloud Architecture"/>
+                                    <ComboBoxItem Content="Open Source(Cloud Platform Development)"/>
+                                    <ComboBoxItem Content="Cyber Security"/>
+                                    <ComboBoxItem Content="Date Science &amp; Big Date Analytics"/>
+                                    <ComboBoxItem Content="Digital IC Design"/>
+                                    <ComboBoxItem Content="elearninig Technologies"/>
+                                    <ComboBoxItem Content="Embedded Ssytem"/>
+                                    <ComboBoxItem Content="Enterprise &amp; Web Applications Development"/>
+                                    <ComboBoxItem Content="Enterprise &amp; Web Apps Development(Microsoft) "/>
+                                    <ComboBoxItem Content="ERP Consulting"/>
+                                    <ComboBoxItem Content="Game Art"/>
+                                    <ComboBoxItem Content="Game Development"/>
+                                    <ComboBoxItem Content="Gelnformatics(GIS)"/>
+                                    <ComboBoxItem Content="Industrial Automation"/>
+                                    <ComboBoxItem Content="Open Source(Internet of Things Applications Development"/>
+                                    <ComboBoxItem Content="Mechatronics"/>
+                                    <ComboBoxItem Content="System Development(Mobile Application Development (Cross Platform))"/>
+                                    <ComboBoxItem Content="Mobile Applications Development(Native)"/>
+                                    <ComboBoxItem Content="Motion Graphics and Compositing Art"/>
+                                    <ComboBoxItem Content="System Development(Professional Web Development &amp; BI"/>
+                                    <ComboBoxItem Content="System Development(Software Architecture)"/>
+                                    <ComboBoxItem Content="Software Testing &amp; Quality Assurance"/>
+                                    <ComboBoxItem Content="Telecom Applications Development"/>
+                                    <ComboBoxItem Content="Web &amp; User Interface Development"/>-->
+
+
+                                </ComboBox>
+
+                                <Button Background="#a6d9ef" x:Name="addstudent" Width="50" Height="20" Grid.Row="4" Grid.Column="6" Click="addstudent_Click">Add</Button>
+                                <Button  Background="#a6d9ef" x:Name="editstudent" Width="50"  Height="20" Grid.Row="5" Grid.Column="6" Click="editstudent_Click">Edit</Button>
+                            </Grid>
+                        </StackPanel>
+                        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="8,8,7.8,8" x:Name="lvUsers" Height="150" Loaded="lvUsers_Loaded" SelectionChanged="lvUsers_SelectionChanged" >
+                            <ListView.View>
+                                <GridView >
+                                    <GridViewColumn  Header="ID"  DisplayMemberBinding="{Binding StuId}" Width="80" />
+                                    <GridViewColumn  Header="First Name"  DisplayMemberBinding="{Binding FirstName}" Width="80" />
+                                    <GridViewColumn  Header="Last Name"  DisplayMemberBinding="{Binding LastName}" Width="80" />
+                                    <GridViewColumn  Header="Birth Date"  DisplayMemberBinding="{Binding BirthDate}" Width="80" />
+                                    <GridViewColumn  Header="E-Mail"  DisplayMemberBinding="{Binding StuEmail}" Width="80" />
+                                    <GridViewColumn  Header="Intake"  DisplayMemberBinding="{Binding Intake}" Width="80" />
+                                    <GridViewColumn  Header="Branch"  DisplayMemberBinding="{Binding Branch}" Width="80" />
+                                    <GridViewColumn  Header="Track"  DisplayMemberBinding="{Binding Track}" Width="80" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="10" x:Name="departments" HorizontalAlignment="Left" Height="555" VerticalAlignment="Top" Width="888" Background="White" Margin="0" >
+                        <WrapPanel>
+                            <StackPanel>
+                                <StackPanel>
+                                    <WrapPanel>
+                                        <GroupBox  BorderThickness="2" BorderBrush="#a6d9ef" Width="250" HorizontalAlignment="Left">
+                                            <GroupBox.Header>
+                                                <WrapPanel>
+                                                    <Label FontWeight="Bold">Intack</Label>
+                                                </WrapPanel>
+                                            </GroupBox.Header>
+                                            <StackPanel>
+                                                <Label Content="Intake Number : " />
+                                                <WrapPanel Margin="0,0,0,0">
+                                                    <TextBox  x:Name="Intake_NumberTextBox" Width="110" Height="25" Margin="0"/>
+                                                </WrapPanel>
+                                                <Label Content="Year : " />
+                                                <WrapPanel Margin="0,0,0,0">
+                                                    <DatePicker x:Name="intakdate" Width="110" Height="25" Margin="0,0,0,8"/>
+                                                </WrapPanel>
+                                                <WrapPanel HorizontalAlignment="Center">
+                                                    <Button Background="#a6d9ef" x:Name="AddIntake"  Width="70" Height="25" Content="Add" Margin="0,0,0,8" Click="AddIntake_Click"/>
+                                                    <Button Background="#a6d9ef" x:Name="UpdateIntake"  Width="70" Height="25" Content="Update" Margin="0,0,0,8" Click="UpdateIntake_Click"/>
+                                                    <Button Background="#a6d9ef" x:Name="RemoveIntake"   Width="70" Height="25" Content="Remove" Margin="0,0,0,8" Click="RemoveIntake_Click"/>
+                                                </WrapPanel>
+                                            </StackPanel>
+                                        </GroupBox>
+
+                                    </WrapPanel>
+
+
+
+                                </StackPanel>
+
+
+                                <StackPanel>
+                                    <WrapPanel>
+                                        <GroupBox HorizontalAlignment="Left" BorderThickness="2" BorderBrush="#a6d9ef" Width="250">
+                                            <GroupBox.Header>
+                                                <WrapPanel>
+                                                    <Label FontWeight="Bold">Branch</Label>
+                                                </WrapPanel>
+                                            </GroupBox.Header>
+                                            <StackPanel>
+                                                <Label Content="Branch Location : " />
+                                                <WrapPanel Margin="0,0,0,0">
+                                                    <TextBox x:Name="BranchLocation_textbox" Width="110" Height="25" Margin="0"/>
+                                                </WrapPanel>
+                                                <Label Content="Year : " />
+                                                <WrapPanel Margin="0,0,0,0">
+                                                    <DatePicker x:Name="branchdate" Width="110" Height="25" Margin="0,0,0,8"/>
+                                                </WrapPanel>
+                                                <WrapPanel HorizontalAlignment="Center">
+                                                    <Button Background="#a6d9ef" x:Name="AddBranch"   Width="70" Height="25" Content="Add" Margin="0,0,0,8" Click="AddBranch_Click"/>
+                                                    <Button Background="#a6d9ef" x:Name="updateBranch"  Width="70" Height="25" Content="Update" Margin="0,0,0,8" Click="updateBranch_Click"/>
+                                                    <Button Background="#a6d9ef" x:Name="removeBanch"  Width="70" Height="25" Content="Remove" Margin="0,0,0,8" Click="removeBanch_Click"/>
+                                                </WrapPanel>
+                                            </StackPanel>
+                                        </GroupBox>
+
+                                    </WrapPanel>
+
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <WrapPanel>
+
+                                        <GroupBox HorizontalAlignment="Left" BorderThickness="2" BorderBrush="#a6d9ef" Width="250">
+                                            <GroupBox.Header>
+                                                <WrapPanel>
+                                                    <Label FontWeight="Bold" Content="Track"/>
+                                                </WrapPanel>
+                                            </GroupBox.Header>
+                                            <StackPanel>
+                                                <Label Content="Trake Name : " />
+                                                <WrapPanel Margin="0,0,0,0">
+                                                    <TextBox  x:Name="tracKName_textbOX" Width="110" Margin="0"/>
+                                                </WrapPanel>
+                                                <Label Content="Year : " />
+                                                <WrapPanel Margin="0,0,0,0">
+                                                    <DatePicker x:Name="trackdate" Width="110" Height="25" Margin="0,0,0,8" HorizontalAlignment="Center"/>
+                                                </WrapPanel>
+                                                <WrapPanel HorizontalAlignment="Center">
+                                                    <Button Background="#a6d9ef" x:Name="Trackadd"  Width="70" Height="25" Content="Add" Margin="0,0,0,8" Click="Trackadd_Click"/>
+                                                    <Button Background="#a6d9ef" x:Name="updatetrack"   Width="70" Height="25" Content="Update" Margin="0,0,0,8" Click="updatetrack_Click"/>
+                                                    <Button Background="#a6d9ef" x:Name="removetrack"  Width="70" Height="25" Content="Remove" Margin="0,0,0,8" Click="removetrack_Click"/>
+                                                </WrapPanel>
+                                            </StackPanel>
+
+
+                                        </GroupBox>
+                                    </WrapPanel>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                            <StackPanel>
+                                <StackPanel Canvas.ZIndex="0"  x:Name="intakess" Background="White">
+                                    <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="68,8,7.8,8" x:Name="intakesViewList" Height="160" Width="444" GotFocus="intakes_GotFocus" Loaded="intakesViewList_Loaded" SelectionChanged="intakesViewList_SelectionChanged" >
+                                        <ListView.View>
+                                            <GridView >
+                                                <GridViewColumn  Header="Intake Number" x:Name="IntakeNumber"   DisplayMemberBinding="{Binding IntakeNumber}" Width="200" />
+                                                <GridViewColumn  Header="Year" x:Name="Year" DisplayMemberBinding="{Binding Year}" Width="200" />
+                                                <!--<GridViewColumn  Header="Course"  DisplayMemberBinding="{Binding Name}" Width="00" />-->
+                                                <!--<GridViewColumn  Header="Degree"  DisplayMemberBinding="{Binding Name}" Width="80" />-->
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </StackPanel>
+                                <StackPanel Canvas.ZIndex="0"  x:Name="branchess" Background="White">
+                                    <ListView Margin="68,8,7.8,8" x:Name="branch" Height="160" Width="444"  Loaded="branch_Loaded" >
+                                        <ListView.View>
+                                            <GridView >
+                                                <GridViewColumn  Header="Branch"  DisplayMemberBinding="{Binding Name}" Width="200" />
+                                                <GridViewColumn  Header="Year"  DisplayMemberBinding="{Binding Year.Year}" Width="200" />
+                                                <!--<GridViewColumn  Header="Course"  DisplayMemberBinding="{Binding Name}" Width="00" />-->
+                                                <!--<GridViewColumn  Header="Degree"  DisplayMemberBinding="{Binding Name}" Width="80" />-->
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </StackPanel>
+                                <StackPanel Canvas.ZIndex="0"  x:Name="trackess" Background="White">
+                                    <ListView ScrollViewer.VerticalScrollBarVisibility="Visible"  Margin="68,8,7.8,8" x:Name="track" Height="160" Width="444"  >
+                                        <ListView.View>
+                                            <GridView >
+                                                <GridViewColumn  Header="track Name"  DisplayMemberBinding="{Binding TrackName}" Width="200" />
+                                                <GridViewColumn  Header="Year"  DisplayMemberBinding="{Binding Year.Year}" Width="200" />
+                                                <!--<GridViewColumn  Header="Course"  DisplayMemberBinding="{Binding Name}" Width="00" />-->
+                                                <!--<GridViewColumn  Header="Degree"  DisplayMemberBinding="{Binding Name}" Width="80" />-->
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </StackPanel>
+                            </StackPanel>
+                        </WrapPanel>
+
+                    </StackPanel>
+                </Canvas>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Window>

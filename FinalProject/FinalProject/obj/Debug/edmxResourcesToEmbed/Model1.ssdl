@@ -1,0 +1,708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExaminationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="course_exam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Course_Id" Type="int" />
+    <Property Name="Exam_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="course_question">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Course_ID" Type="int" Nullable="false" />
+    <Property Name="Qust_codr" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exam_qusetion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Exam_Id" Type="int" Nullable="false" />
+    <Property Name="Question_Id" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rel_branch_track_intake">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="branchID" Type="int" Nullable="false" />
+    <Property Name="trackID" Type="int" Nullable="false" />
+    <Property Name="intack" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rel_course_student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="StuId" Type="int" />
+    <Property Name="CourseId" Type="int" />
+  </EntityType>
+  <EntityType Name="rel_exam_student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="StuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamCode" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Taken" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rel_exam_track">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="TrackId" Type="int" Nullable="false" />
+    <Property Name="ExamCode" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rel_instructor_cource">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="InsId" Type="int" Nullable="false" />
+    <Property Name="Year" Type="date" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rel_student_qusetion_exam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="QustCode" Type="int" Nullable="false" />
+    <Property Name="ExamCode" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="200" />
+    <Property Name="ModelAnswer" Type="nvarchar" MaxLength="200" />
+    <Property Name="DegreeMark" Type="float" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="branch">
+    <Key>
+      <PropertyRef Name="BranchId" />
+    </Key>
+    <Property Name="BranchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Year" Type="date" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="MaxDegree" Type="smallint" Nullable="false" />
+    <Property Name="MinDegree" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exam">
+    <Key>
+      <PropertyRef Name="ExamCode" />
+    </Key>
+    <Property Name="ExamCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StartTime" Type="time" Precision="0" />
+    <Property Name="EndTime" Type="date" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="MaxDegree" Type="smallint" Nullable="false" />
+    <Property Name="MinDegree" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="intake">
+    <Key>
+      <PropertyRef Name="IntakeNo" />
+    </Key>
+    <Property Name="IntakeNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="date" />
+    <Property Name="IntakeNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="track">
+    <Key>
+      <PropertyRef Name="TrackId" />
+    </Key>
+    <Property Name="TrackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="instructor">
+    <Key>
+      <PropertyRef Name="InsId" />
+    </Key>
+    <Property Name="InsEmail" Type="varchar" MaxLength="50" />
+    <Property Name="InsId" Type="int" Nullable="false" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaritalStatus" Type="varchar" MaxLength="10" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="HireDate" Type="date" Nullable="false" />
+    <Property Name="Job" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Salary" Type="smallmoney" />
+    <Property Name="Branchid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="StuId" />
+    </Key>
+    <Property Name="StuEmail" Type="varchar" MaxLength="50" />
+    <Property Name="StuId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatrailStatus" Type="varchar" MaxLength="10" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="JoinDate" Type="date" Nullable="false" />
+    <Property Name="ITBid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="msqmultivalue">
+    <Key>
+      <PropertyRef Name="MCQCode" />
+      <PropertyRef Name="ModelAnswer" />
+    </Key>
+    <Property Name="MCQCode" Type="int" Nullable="false" />
+    <Property Name="ModelAnswer" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="correct" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="multichoice">
+    <Key>
+      <PropertyRef Name="MCQCode" />
+    </Key>
+    <Property Name="QustCode" Type="int" Nullable="false" />
+    <Property Name="MCQCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="question" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="qtruefalse">
+    <Key>
+      <PropertyRef Name="TfCode" />
+    </Key>
+    <Property Name="QustCode" Type="int" Nullable="false" />
+    <Property Name="ModelAnswer" Type="nvarchar" MaxLength="100" />
+    <Property Name="TfCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="question" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="question">
+    <Key>
+      <PropertyRef Name="QustCode" />
+    </Key>
+    <Property Name="QustCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Degree" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="textquestion">
+    <Key>
+      <PropertyRef Name="TxtCode" />
+    </Key>
+    <Property Name="QustCode" Type="int" Nullable="false" />
+    <Property Name="ModelAnswer" Type="nvarchar" MaxLength="100" />
+    <Property Name="TxtCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="question" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__course_ex__Exam___3D2915A8">
+    <End Role="exam" Type="Self.exam" Multiplicity="0..1" />
+    <End Role="course_exam" Type="Self.course_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exam">
+        <PropertyRef Name="ExamCode" />
+      </Principal>
+      <Dependent Role="course_exam">
+        <PropertyRef Name="Exam_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__course_qu__Cours__29221CFB">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="course_question" Type="Self.course_question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="course_question">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__course_qu__Qust___2A164134">
+    <End Role="question" Type="Self.question" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="course_question" Type="Self.course_question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question">
+        <PropertyRef Name="QustCode" />
+      </Principal>
+      <Dependent Role="course_question">
+        <PropertyRef Name="Qust_codr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__exam_quse__Exam___40058253">
+    <End Role="exam" Type="Self.exam" Multiplicity="1" />
+    <End Role="exam_qusetion" Type="Self.exam_qusetion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exam">
+        <PropertyRef Name="ExamCode" />
+      </Principal>
+      <Dependent Role="exam_qusetion">
+        <PropertyRef Name="Exam_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__instructo__InsEm__71D1E811">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="instructor" Type="Self.instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="instructor">
+        <PropertyRef Name="InsEmail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__instructo__Manag__72C60C4A">
+    <End Role="instructor" Type="Self.instructor" Multiplicity="0..1" />
+    <End Role="instructor1" Type="Self.instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="instructor">
+        <PropertyRef Name="InsId" />
+      </Principal>
+      <Dependent Role="instructor1">
+        <PropertyRef Name="ManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__msqmultiv__MCQCo__74AE54BC">
+    <End Role="multichoice" Type="Self.multichoice" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="msqmultivalue" Type="Self.msqmultivalue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="multichoice">
+        <PropertyRef Name="MCQCode" />
+      </Principal>
+      <Dependent Role="msqmultivalue">
+        <PropertyRef Name="MCQCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__multichoi__QustC__75A278F5">
+    <End Role="question" Type="Self.question" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="multichoice" Type="Self.multichoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question">
+        <PropertyRef Name="QustCode" />
+      </Principal>
+      <Dependent Role="multichoice">
+        <PropertyRef Name="QustCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__qtruefals__QustC__76969D2E">
+    <End Role="question" Type="Self.question" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="qtruefalse" Type="Self.qtruefalse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question">
+        <PropertyRef Name="QustCode" />
+      </Principal>
+      <Dependent Role="qtruefalse">
+        <PropertyRef Name="QustCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rel_branc__branc__4A8310C6">
+    <End Role="branch" Type="Self.branch" Multiplicity="1" />
+    <End Role="rel_branch_track_intake" Type="Self.rel_branch_track_intake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branch">
+        <PropertyRef Name="BranchId" />
+      </Principal>
+      <Dependent Role="rel_branch_track_intake">
+        <PropertyRef Name="branchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rel_branc__track__4B7734FF">
+    <End Role="track" Type="Self.track" Multiplicity="1" />
+    <End Role="rel_branch_track_intake" Type="Self.rel_branch_track_intake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="track">
+        <PropertyRef Name="TrackId" />
+      </Principal>
+      <Dependent Role="rel_branch_track_intake">
+        <PropertyRef Name="trackID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rel_cours__Cours__2EA5EC27">
+    <End Role="course" Type="Self.course" Multiplicity="0..1" />
+    <End Role="rel_course_student" Type="Self.rel_course_student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="rel_course_student">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rel_exam___ExamC__693CA210">
+    <End Role="exam" Type="Self.exam" Multiplicity="1" />
+    <End Role="rel_exam_student" Type="Self.rel_exam_student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exam">
+        <PropertyRef Name="ExamCode" />
+      </Principal>
+      <Dependent Role="rel_exam_student">
+        <PropertyRef Name="ExamCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__textquest__QustC__778AC167">
+    <End Role="question" Type="Self.question" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="textquestion" Type="Self.textquestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question">
+        <PropertyRef Name="QustCode" />
+      </Principal>
+      <Dependent Role="textquestion">
+        <PropertyRef Name="QustCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_course_exam_course">
+    <End Role="course" Type="Self.course" Multiplicity="0..1" />
+    <End Role="course_exam" Type="Self.course_exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="course_exam">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exam_qusetion_question">
+    <End Role="question" Type="Self.question" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="exam_qusetion" Type="Self.exam_qusetion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question">
+        <PropertyRef Name="QustCode" />
+      </Principal>
+      <Dependent Role="exam_qusetion">
+        <PropertyRef Name="Question_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_instructor_branch">
+    <End Role="branch" Type="Self.branch" Multiplicity="1" />
+    <End Role="instructor" Type="Self.instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branch">
+        <PropertyRef Name="BranchId" />
+      </Principal>
+      <Dependent Role="instructor">
+        <PropertyRef Name="Branchid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rel_branch_track_intake_intake">
+    <End Role="intake" Type="Self.intake" Multiplicity="1" />
+    <End Role="rel_branch_track_intake" Type="Self.rel_branch_track_intake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="intake">
+        <PropertyRef Name="IntakeNo" />
+      </Principal>
+      <Dependent Role="rel_branch_track_intake">
+        <PropertyRef Name="intack" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rel_course_student_student">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="rel_course_student" Type="Self.rel_course_student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="StuId" />
+      </Principal>
+      <Dependent Role="rel_course_student">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rel_exam_student_student">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="rel_exam_student" Type="Self.rel_exam_student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="StuId" />
+      </Principal>
+      <Dependent Role="rel_exam_student">
+        <PropertyRef Name="StuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rel_exam_track_rel_exam_track">
+    <End Role="rel_exam_track" Type="Self.rel_exam_track" Multiplicity="1" />
+    <End Role="rel_exam_track1" Type="Self.rel_exam_track" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="rel_exam_track">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="rel_exam_track1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rel_exam_track_track">
+    <End Role="track" Type="Self.track" Multiplicity="1" />
+    <End Role="rel_exam_track" Type="Self.rel_exam_track" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="track">
+        <PropertyRef Name="TrackId" />
+      </Principal>
+      <Dependent Role="rel_exam_track">
+        <PropertyRef Name="TrackId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rel_instructor_cource_course">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="rel_instructor_cource" Type="Self.rel_instructor_cource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="rel_instructor_cource">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rel_instructor_cource_instructor">
+    <End Role="instructor" Type="Self.instructor" Multiplicity="1" />
+    <End Role="rel_instructor_cource" Type="Self.rel_instructor_cource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="instructor">
+        <PropertyRef Name="InsId" />
+      </Principal>
+      <Dependent Role="rel_instructor_cource">
+        <PropertyRef Name="InsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_rel_branch_track_intake">
+    <End Role="rel_branch_track_intake" Type="Self.rel_branch_track_intake" Multiplicity="1" />
+    <End Role="student" Type="Self.student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rel_branch_track_intake">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="student">
+        <PropertyRef Name="ITBid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="student" Type="Self.student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="student">
+        <PropertyRef Name="StuEmail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="checkpermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InsId" Type="varchar" Mode="In" />
+    <Parameter Name="courseId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ExaminationModelStoreContainer">
+    <EntitySet Name="course_exam" EntityType="Self.course_exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course_question" EntityType="Self.course_question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="exam_qusetion" EntityType="Self.exam_qusetion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rel_branch_track_intake" EntityType="Self.rel_branch_track_intake" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rel_course_student" EntityType="Self.rel_course_student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rel_exam_student" EntityType="Self.rel_exam_student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rel_exam_track" EntityType="Self.rel_exam_track" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rel_instructor_cource" EntityType="Self.rel_instructor_cource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rel_student_qusetion_exam" EntityType="Self.rel_student_qusetion_exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="branch" EntityType="Self.branch" Schema="management" store:Type="Tables" />
+    <EntitySet Name="course" EntityType="Self.course" Schema="management" store:Type="Tables" />
+    <EntitySet Name="exam" EntityType="Self.exam" Schema="management" store:Type="Tables" />
+    <EntitySet Name="intake" EntityType="Self.intake" Schema="management" store:Type="Tables" />
+    <EntitySet Name="track" EntityType="Self.track" Schema="management" store:Type="Tables" />
+    <EntitySet Name="instructor" EntityType="Self.instructor" Schema="person" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="person" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="person" store:Type="Tables" />
+    <EntitySet Name="msqmultivalue" EntityType="Self.msqmultivalue" Schema="questionPool" store:Type="Tables" />
+    <EntitySet Name="multichoice" EntityType="Self.multichoice" Schema="questionPool" store:Type="Tables" />
+    <EntitySet Name="qtruefalse" EntityType="Self.qtruefalse" Schema="questionPool" store:Type="Tables" />
+    <EntitySet Name="question" EntityType="Self.question" Schema="questionPool" store:Type="Tables" />
+    <EntitySet Name="textquestion" EntityType="Self.textquestion" Schema="questionPool" store:Type="Tables" />
+    <AssociationSet Name="FK__course_ex__Exam___3D2915A8" Association="Self.FK__course_ex__Exam___3D2915A8">
+      <End Role="exam" EntitySet="exam" />
+      <End Role="course_exam" EntitySet="course_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK__course_qu__Cours__29221CFB" Association="Self.FK__course_qu__Cours__29221CFB">
+      <End Role="course" EntitySet="course" />
+      <End Role="course_question" EntitySet="course_question" />
+    </AssociationSet>
+    <AssociationSet Name="FK__course_qu__Qust___2A164134" Association="Self.FK__course_qu__Qust___2A164134">
+      <End Role="question" EntitySet="question" />
+      <End Role="course_question" EntitySet="course_question" />
+    </AssociationSet>
+    <AssociationSet Name="FK__exam_quse__Exam___40058253" Association="Self.FK__exam_quse__Exam___40058253">
+      <End Role="exam" EntitySet="exam" />
+      <End Role="exam_qusetion" EntitySet="exam_qusetion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__instructo__InsEm__71D1E811" Association="Self.FK__instructo__InsEm__71D1E811">
+      <End Role="user" EntitySet="user" />
+      <End Role="instructor" EntitySet="instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__instructo__Manag__72C60C4A" Association="Self.FK__instructo__Manag__72C60C4A">
+      <End Role="instructor" EntitySet="instructor" />
+      <End Role="instructor1" EntitySet="instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__msqmultiv__MCQCo__74AE54BC" Association="Self.FK__msqmultiv__MCQCo__74AE54BC">
+      <End Role="multichoice" EntitySet="multichoice" />
+      <End Role="msqmultivalue" EntitySet="msqmultivalue" />
+    </AssociationSet>
+    <AssociationSet Name="FK__multichoi__QustC__75A278F5" Association="Self.FK__multichoi__QustC__75A278F5">
+      <End Role="question" EntitySet="question" />
+      <End Role="multichoice" EntitySet="multichoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__qtruefals__QustC__76969D2E" Association="Self.FK__qtruefals__QustC__76969D2E">
+      <End Role="question" EntitySet="question" />
+      <End Role="qtruefalse" EntitySet="qtruefalse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rel_branc__branc__4A8310C6" Association="Self.FK__rel_branc__branc__4A8310C6">
+      <End Role="branch" EntitySet="branch" />
+      <End Role="rel_branch_track_intake" EntitySet="rel_branch_track_intake" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rel_branc__track__4B7734FF" Association="Self.FK__rel_branc__track__4B7734FF">
+      <End Role="track" EntitySet="track" />
+      <End Role="rel_branch_track_intake" EntitySet="rel_branch_track_intake" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rel_cours__Cours__2EA5EC27" Association="Self.FK__rel_cours__Cours__2EA5EC27">
+      <End Role="course" EntitySet="course" />
+      <End Role="rel_course_student" EntitySet="rel_course_student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rel_exam___ExamC__693CA210" Association="Self.FK__rel_exam___ExamC__693CA210">
+      <End Role="exam" EntitySet="exam" />
+      <End Role="rel_exam_student" EntitySet="rel_exam_student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__textquest__QustC__778AC167" Association="Self.FK__textquest__QustC__778AC167">
+      <End Role="question" EntitySet="question" />
+      <End Role="textquestion" EntitySet="textquestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_course_exam_course" Association="Self.FK_course_exam_course">
+      <End Role="course" EntitySet="course" />
+      <End Role="course_exam" EntitySet="course_exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exam_qusetion_question" Association="Self.FK_exam_qusetion_question">
+      <End Role="question" EntitySet="question" />
+      <End Role="exam_qusetion" EntitySet="exam_qusetion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_instructor_branch" Association="Self.FK_instructor_branch">
+      <End Role="branch" EntitySet="branch" />
+      <End Role="instructor" EntitySet="instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rel_branch_track_intake_intake" Association="Self.FK_rel_branch_track_intake_intake">
+      <End Role="intake" EntitySet="intake" />
+      <End Role="rel_branch_track_intake" EntitySet="rel_branch_track_intake" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rel_course_student_student" Association="Self.FK_rel_course_student_student">
+      <End Role="student" EntitySet="student" />
+      <End Role="rel_course_student" EntitySet="rel_course_student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rel_exam_student_student" Association="Self.FK_rel_exam_student_student">
+      <End Role="student" EntitySet="student" />
+      <End Role="rel_exam_student" EntitySet="rel_exam_student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rel_exam_track_rel_exam_track" Association="Self.FK_rel_exam_track_rel_exam_track">
+      <End Role="rel_exam_track" EntitySet="rel_exam_track" />
+      <End Role="rel_exam_track1" EntitySet="rel_exam_track" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rel_exam_track_track" Association="Self.FK_rel_exam_track_track">
+      <End Role="track" EntitySet="track" />
+      <End Role="rel_exam_track" EntitySet="rel_exam_track" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rel_instructor_cource_course" Association="Self.FK_rel_instructor_cource_course">
+      <End Role="course" EntitySet="course" />
+      <End Role="rel_instructor_cource" EntitySet="rel_instructor_cource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rel_instructor_cource_instructor" Association="Self.FK_rel_instructor_cource_instructor">
+      <End Role="instructor" EntitySet="instructor" />
+      <End Role="rel_instructor_cource" EntitySet="rel_instructor_cource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_rel_branch_track_intake" Association="Self.FK_student_rel_branch_track_intake">
+      <End Role="rel_branch_track_intake" EntitySet="rel_branch_track_intake" />
+      <End Role="student" EntitySet="student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_user" Association="Self.FK_student_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="student" EntitySet="student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

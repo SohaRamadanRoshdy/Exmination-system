@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="621648869f3c456a8438e49c8441f98f" Name="Diagram1">
+        <EntityTypeShape EntityType="ExaminationModel.course_exam" Width="1.5" PointX="8" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.course_question" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.exam_qusetion" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.rel_branch_track_intake" Width="1.5" PointX="10" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.rel_course_student" Width="1.5" PointX="17.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.rel_exam_student" Width="1.5" PointX="17.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.rel_exam_track" Width="1.5" PointX="10" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.rel_instructor_cource" Width="1.5" PointX="15.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.rel_student_qusetion_exam" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.sysdiagram" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.branch" Width="1.5" PointX="7.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.course" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.exam" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.intake" Width="1.5" PointX="7.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.track" Width="1.5" PointX="7.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.instructor" Width="1.5" PointX="13" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.student" Width="1.5" PointX="15.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.user" Width="1.5" PointX="13" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.msqmultivalue" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.multichoice" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.qtruefalse" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.question" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExaminationModel.textquestion" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <AssociationConnector Association="ExaminationModel.FK__course_ex__Exam___3D2915A8" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_course_exam_course" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__course_qu__Cours__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__course_qu__Qust___2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__exam_quse__Exam___40058253" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_exam_qusetion_question" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__rel_branc__branc__4A8310C6" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__rel_branc__track__4B7734FF" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_rel_branch_track_intake_intake" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_student_rel_branch_track_intake" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__rel_cours__Cours__2EA5EC27" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_rel_course_student_student" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__rel_exam___ExamC__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_rel_exam_student_student" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_rel_exam_track_rel_exam_track" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_rel_exam_track_track" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_rel_instructor_cource_course" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_rel_instructor_cource_instructor" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_instructor_branch" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__instructo__InsEm__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__instructo__Manag__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK_student_user" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__msqmultiv__MCQCo__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__multichoi__QustC__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__qtruefals__QustC__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="ExaminationModel.FK__textquest__QustC__778AC167" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
